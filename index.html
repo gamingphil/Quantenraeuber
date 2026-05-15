@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="3; url=https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantenräuber</title>
     <style>
         body, html {
@@ -10,12 +10,12 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background-color: #121212;
             font-family: system-ui, -apple-system, sans-serif;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         h1 {
             color: #ffffff;
@@ -24,10 +24,55 @@
             letter-spacing: -2px;
             text-align: center;
             margin: 0;
+            position: absolute;
+            z-index: 10; /* Sits on top of the video */
+            user-select: none;
+            transition: opacity 0.2s ease;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
-    <h1>Quantenräuber</h1>
+
+    <h1 id="baitText">Quantenräuber</h1>
+
+    <video id="rickrollVideo" autoplay muted loop playsinline>
+        <source src="bananencreme.mp4" type="video/mp4">
+    </video>
+
+    <script>
+        const bait = document.getElementById('baitText');
+        const video = document.getElementById('rickrollVideo');
+        let trapped = false;
+
+        function springTrap() {
+            if (trapped) return; // Only trigger once
+            trapped = true;
+
+            // Unmute, max volume, and reset to the start of the song
+            video.muted = false;
+            video.volume = 1.0;
+            video.currentTime = 0; 
+
+            // Hide the text
+            bait.style.opacity = '0';
+            setTimeout(() => bait.style.display = 'none', 200);
+        }
+
+        // Desktop trigger: Triggers the absolute split-second the mouse moves or enters the window
+        window.addEventListener('mousemove', springTrap);
+        window.addEventListener('mouseenter', springTrap);
+        
+        // Mobile fallback: Just in case they are on a phone and tap
+        window.addEventListener('click', springTrap);
+    </script>
 </body>
 </html>
