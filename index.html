@@ -1,92 +1,33 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quantenräuber</title>
-
-<style>
-html, body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: black;
-}
-
-#text {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 10vw;
-    font-family: sans-serif;
-    font-weight: bold;
-    z-index: 10;
-    transition: opacity 0.4s;
-}
-
-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="3; url=https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+    <title>Quantenräuber</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow: hidden;
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 10vw;
+            font-weight: 900;
+            letter-spacing: -2px;
+            text-align: center;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
-
-<div id="text">Quantenräuber</div>
-
-<video id="video" playsinline preload="auto">
-    <source src="bananencreme.mp4" type="video/mp4">
-</video>
-
-<script>
-const video = document.getElementById("video");
-const text = document.getElementById("text");
-
-// PRELOAD muted first (allowed)
-video.muted = true;
-
-video.play().then(() => {
-    console.log("Muted preload started");
-}).catch(err => {
-    console.log("Initial preload blocked", err);
-});
-
-// After 3 sec try to enable sound
-setTimeout(async () => {
-
-    text.style.opacity = "0";
-
-    // restart from beginning
-    video.currentTime = 0;
-
-    try {
-        video.pause();
-
-        // unmute
-        video.muted = false;
-        video.volume = 1;
-
-        // IMPORTANT: play AGAIN after unmuting
-        await video.play();
-
-        console.log("Playing with sound");
-
-    } catch (err) {
-
-        console.log("Sound autoplay blocked");
-
-        // fallback
-        video.muted = true;
-        video.play();
-    }
-
-}, 3000);
-</script>
-
+    <h1>Quantenräuber</h1>
 </body>
 </html>
